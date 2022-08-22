@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+
+  mongodb:
+    image: aashreys/mongo-auth:latest
+    environment:
+      - AUTH=yes
+      - MONGODB_ADMIN_USER=lucas
+      - MONGODB_ADMIN_PASS=AE641547&!c68a
+      - MONGODB_APPLICATION_USER=lucas
+      - MONGODB_APPLICATION_PASS=AE641547&!c68a
+      - MONGODB_APPLICATION_DATABASE=compass_db
+    ports:
+      - "27017:27017"
+    networks:
+      - compass
+networks:
+  compass:
+    driver: bridge
