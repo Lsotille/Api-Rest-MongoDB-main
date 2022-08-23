@@ -18,6 +18,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @AllArgsConstructor
 public class SwaggerConfig implements WebMvcConfigurer {
 
+    // Cria a documentacao no swgger
     private final PropertiesEnvConfig env;
 
     @Override

@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document(collection = "products")
-public class Product implements Serializable {
+public class Livro implements Serializable {
 
     private static final long serialVersionUID = -8271925344794286698L;
 
@@ -32,5 +32,7 @@ public class Product implements Serializable {
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
+
+    private String genre;
 
 }

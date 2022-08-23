@@ -12,19 +12,21 @@ import javax.servlet.http.HttpServletRequest;
 
 @ControllerAdvice
 public class ResourceExceptionHandler {
-	
+
+	//Exception quando um Obejeto nao e´encontrado e com mensagens programadas
 	@ExceptionHandler(ObjectNotFoundException.class)
 	public ResponseEntity<StandardError> objectNotFound(ObjectNotFoundException e, HttpServletRequest request) {
 		StandardError error = new StandardError(System.currentTimeMillis(), HttpStatus.NOT_FOUND.value(), Constants.ERROR_NOT_FOUND, e.getMessage(), request.getRequestURI());
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
 	}
 
+	//Exception quando os dados estao errados e com mensagens programadas
 	@ExceptionHandler(DataIntegrityException.class)
 	public ResponseEntity<StandardError> dataIntegrity(DataIntegrityException e, HttpServletRequest request) {
 		StandardError error = new StandardError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(), Constants.ERROR_DATA_INTEGRITY, e.getMessage(), request.getRequestURI());
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
 	}
-	
+	//Exception quando um metodo com argumentos invalidos com mensagens programadas
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<StandardError> validation(MethodArgumentNotValidException e, HttpServletRequest request) {
 		ValidationError error = new ValidationError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(), Constants.ERROR_VALIDATION, Constants.MESSAGE_FIELD_REQUIRE, request.getRequestURI());
@@ -33,7 +35,7 @@ public class ResourceExceptionHandler {
 		}		
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
 	}
-
+	//Exception quando Run time exception com mensagens programadas
 	@ExceptionHandler(value = RuntimeException.class)
 	public ResponseEntity<StandardError> errorHandlerOverJson(HttpServletRequest request, RuntimeException exception) {
 		StandardError error = new StandardError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(), Constants.ERROR_INVALID_REQUEST, Constants.MESSAGE_INVALID_REQUEST, request.getRequestURI());
